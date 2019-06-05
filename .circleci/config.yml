@@ -5,9 +5,9 @@ jobs:
       image: circleci/classic:edge # volume指定含めたdocker-composeが利用可能
     steps:
     - checkout
-    - run:
-        name: init_container.sh # rails newやbundle installしている（詳しくはリポジトリ確認して下さい）
-        command: sudo bash init_container.sh
+    # - run:
+    #     name: init_container.sh # rails newやbundle installしている（詳しくはリポジトリ確認して下さい）
+    #     command: sudo bash init_container.sh
     - run:
         name: up_service.sh #　db create migrate後にdocker-compose up
         command: bash up_service.sh
@@ -39,10 +39,10 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-    # - build
+    - build
     - deploy-prod:
-        # requires:
-        # - build
+        requires:
+        - build
         filters:
           branches:
             only: master # masterブランチの変更に対してのみdeploy-prodジョブ実行
