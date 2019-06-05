@@ -1,9 +1,42 @@
-<table border="1">
-  <tr>
-    <th>title</th>
+<div id="results">
+  <table border="1">
+    <thead>
+      <tr>
+      <th class="sort" data-sort="date">プレイ日時</th>
+      <th>曲名</th>
+      <th>難易度</th>
+      <th>レベル</th>
+      <th>評価</th>
+      </tr>
+    </thead>
+    <!-- IMPORTANT, class="list" have to be at tbody -->
+    <tbody class="list">
+    <tr>
     <% @results.each do |result| %>
     <tr>
-      <td><%= result.Dir %></td>
+    <td class="date">
+      <%= result.DateTime.to_date %>
+    </td>
+    <td>
+      <%= result.Dir %>
+    </td>
+    <td>
+      <%= result.Difficulty %>
+    </td>
+    <td>
+      <%= result.Level %>
+    </td>
+    <td>
+      <%= result.Grade %>
+    </td>
     </tr>
     <% end %>
-</table>
+  </table>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script>
+var options = {
+  valueNames: [ 'date' ]
+};
+var userList = new List('results', options);
+</script>
