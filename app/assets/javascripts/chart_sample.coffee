@@ -9,42 +9,41 @@ window.draw_graph = ->
     bgColorsF = new Array(barNum)
     bdColorsF = new Array(barNum)
     cleared = new Array()
-    failed = new Array()
-    counts = new Array()
-    counts2 = new Array()
+    clearedCounts = new Array()
+    failedCounts = new Array()
 
     labels = Array.from(set.values())
 
-    for result in gon.allResults
+    for i, result of gon.allResults
         if result[1] == "true"
-            cleared.push(result[0])
-    
-    for v in cleared
-        if (counts[v] == undefined) then counts[v] = 1 else counts[v] = counts[v] + 1
+            if (cleared[result[0]] == undefined) \
+                then cleared[result[0]] = 1 \
+                else cleared[result[0]] = cleared[result[0]] + 1
 
-    for count, i of counts
-        counts2.push(i)
+    for i, clearedCount of cleared
+        clearedCounts.push(clearedCount)
 
     for i in [0...barNum]
-        failed[i] = gon.playCount[i] - counts2[i]
+        failedCounts[i] = gon.playCount[i] - clearedCounts[i]
         bgColorsC[i] = 'rgba(75, 192, 192, 0.2)'
         bdColorsC[i] = 'rgba(75, 192, 192, 1)'
         bgColorsF[i] = 'rgba(75, 192, 80, 0.2)'
         bdColorsF[i] = 'rgba(75, 192, 80, 1)'
+
     myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels
             datasets: [{
                 label: 'Cleared',
-                data: counts2,
+                data: clearedCounts,
                 backgroundColor: bgColorsC,
                 borderColor: bdColorsC,
                 borderWidth: 1
             },
             {
                 label: 'Failed',
-                data: failed,
+                data: failedCounts,
                 backgroundColor: bgColorsF,
                 borderColor: bdColorsF,
                 borderWidth: 1
