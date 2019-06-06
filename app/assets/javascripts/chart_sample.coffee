@@ -8,32 +8,25 @@ window.draw_graph = ->
     bdColorsC = new Array(barNum)
     bgColorsF = new Array(barNum)
     bdColorsF = new Array(barNum)
+    cleared = new Array()
+    failed = new Array()
+    counts = new Array()
+    counts2 = new Array()
+
     labels = Array.from(set.values())
 
-    cleared = new Array(barNum)
-    failed = new Array(barNum)
-    
     for result in gon.allResults
         if result[1] == "true"
             cleared.push(result[0])
-
-    counts = {}
-    counts2 = new Array()
+    
     for v in cleared
-        if counts[v] == undefined
-            counts[v] = 1
-        else
-            counts[v] = counts[v] + 1
+        if (counts[v] == undefined) then counts[v] = 1 else counts[v] = counts[v] + 1
 
     for count, i of counts
         counts2.push(i)
 
-    counts2.shift()
-
-    for v, i in failed
-        failed[i] = gon.playCount[i] - counts2[i]
-            
     for i in [0...barNum]
+        failed[i] = gon.playCount[i] - counts2[i]
         bgColorsC[i] = 'rgba(75, 192, 192, 0.2)'
         bdColorsC[i] = 'rgba(75, 192, 192, 1)'
         bgColorsF[i] = 'rgba(75, 192, 80, 0.2)'
