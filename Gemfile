@@ -48,3 +48,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'active_decorator'
+gem 'chart-js-rails', '~> 0.1.4'
+gem 'gon', '~> 6.2.0'
