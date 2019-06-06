@@ -3,9 +3,11 @@
     <thead>
       <tr>
       <th class="sort" data-sort="date">プレイ日時</th>
+      <th>グループ</th>
       <th>曲名</th>
       <th>難易度</th>
       <th>レベル</th>
+      <th>スコア</th>
       <th>評価</th>
       </tr>
     </thead>
@@ -18,13 +20,19 @@
       <%= result.DateTime.to_date %>
     </td>
     <td>
-      <%= result.Dir %>
+      <%= result.group(result.Dir) %>
+    </td>
+    <td>
+      <%= result.title(result.Dir) %>
     </td>
     <td>
       <%= result.Difficulty %>
     </td>
     <td>
       <%= result.Level %>
+    </td>
+    <td>
+      <%= result.Score %>
     </td>
     <td>
       <%= result.Grade %>
@@ -38,5 +46,5 @@
 var options = {
   valueNames: [ 'date' ]
 };
-var userList = new List('results', options);
+var resultList = new List('results', options);
 </script>
