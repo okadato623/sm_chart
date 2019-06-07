@@ -46,8 +46,8 @@ window.draw_graph = ->
     bgColors14F = new Array(barNum)
     bgColors15F = new Array(barNum)
 
+
     for i, result of gon.allResults
-        console.log result[0]
         switch result[2]
             when "10"
                 if result[1] == "true"
@@ -83,7 +83,6 @@ window.draw_graph = ->
                 # do nothing
 
     console.log level10F
-
     for label in labels
         level10C[label] = 0 if (level10C[label] == undefined)
         level10F[label] = 0 if (level10F[label] == undefined)
@@ -97,31 +96,20 @@ window.draw_graph = ->
         level14F[label] = 0 if (level14F[label] == undefined)
         level15C[label] = 0 if (level15C[label] == undefined)
         level15F[label] = 0 if (level15F[label] == undefined)
-
-    for i, count of level10C
-        countLevel10C.push(count)
-    for i, count of level10F
-        countLevel10F.push(count)
-    for i, count of level11C
-        countLevel11C.push(count)
-    for i, count of level11F
-        countLevel11F.push(count)
-    for i, count of level12C
-        countLevel12C.push(count)
-    for i, count of level12F
-        countLevel12F.push(count)
-    for i, count of level13C
-        countLevel13C.push(count)
-    for i, count of level13F
-        countLevel13F.push(count)
-    for i, count of level14C
-        countLevel14C.push(count)
-    for i, count of level14F
-        countLevel14F.push(count)
-    for i, count of level15C
-        countLevel15C.push(count)
-    for i, count of level15F
-        countLevel15F.push(count)
+    
+    for label in labels
+        countLevel10C.push(level10C[label])
+        countLevel10F.push(level10F[label])
+        countLevel11C.push(level11C[label])
+        countLevel11F.push(level11F[label])
+        countLevel12C.push(level12C[label])
+        countLevel12F.push(level12F[label])
+        countLevel13C.push(level13C[label])
+        countLevel13F.push(level13F[label])
+        countLevel14C.push(level14C[label])
+        countLevel14F.push(level14F[label])
+        countLevel15C.push(level15C[label])
+        countLevel15F.push(level15F[label])
 
     for i in [0...barNum]
         bgColors10C[i] = 'rgba(192, 75, 75, 1)'
