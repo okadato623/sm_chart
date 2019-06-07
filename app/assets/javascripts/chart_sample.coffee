@@ -1,16 +1,7 @@
 window.draw_graph = -> 
     ctx = document.getElementById("myChart").getContext('2d')
     set = new Set(gon.dates)
-
     barNum = set.size
-    labels = new Array(barNum)
-    bgColorsC = new Array(barNum)
-    bdColorsC = new Array(barNum)
-    bgColorsF = new Array(barNum)
-    bdColorsF = new Array(barNum)
-    cleared = new Array()
-    clearedCounts = new Array()
-    failedCounts = new Array()
     labels = Array.from(set.values())
 
     level10C = new Array()
@@ -41,7 +32,22 @@ window.draw_graph = ->
     countLevel14F = new Array()
     countLevel15F = new Array()
 
+    bgColors10C = new Array(barNum)
+    bgColors11C = new Array(barNum)
+    bgColors12C = new Array(barNum)
+    bgColors13C = new Array(barNum)
+    bgColors14C = new Array(barNum)
+    bgColors15C = new Array(barNum)
+
+    bgColors10F = new Array(barNum)
+    bgColors11F = new Array(barNum)
+    bgColors12F = new Array(barNum)
+    bgColors13F = new Array(barNum)
+    bgColors14F = new Array(barNum)
+    bgColors15F = new Array(barNum)
+
     for i, result of gon.allResults
+        console.log result[0]
         switch result[2]
             when "10"
                 if result[1] == "true"
@@ -76,6 +82,8 @@ window.draw_graph = ->
             else
                 # do nothing
 
+    console.log level10F
+
     for label in labels
         level10C[label] = 0 if (level10C[label] == undefined)
         level10F[label] = 0 if (level10F[label] == undefined)
@@ -90,33 +98,104 @@ window.draw_graph = ->
         level15C[label] = 0 if (level15C[label] == undefined)
         level15F[label] = 0 if (level15F[label] == undefined)
 
+    for i, count of level10C
+        countLevel10C.push(count)
+    for i, count of level10F
+        countLevel10F.push(count)
     for i, count of level11C
         countLevel11C.push(count)
+    for i, count of level11F
+        countLevel11F.push(count)
+    for i, count of level12C
+        countLevel12C.push(count)
+    for i, count of level12F
+        countLevel12F.push(count)
+    for i, count of level13C
+        countLevel13C.push(count)
+    for i, count of level13F
+        countLevel13F.push(count)
+    for i, count of level14C
+        countLevel14C.push(count)
+    for i, count of level14F
+        countLevel14F.push(count)
+    for i, count of level15C
+        countLevel15C.push(count)
+    for i, count of level15F
+        countLevel15F.push(count)
 
     for i in [0...barNum]
-        failedCounts[i] = gon.playCount[i] - clearedCounts[i]
-        bgColorsC[i] = 'rgba(75, 192, 192, 0.2)'
-        bdColorsC[i] = 'rgba(75, 192, 192, 1)'
-        bgColorsF[i] = 'rgba(75, 192, 80, 0.2)'
-        bdColorsF[i] = 'rgba(75, 192, 80, 1)'
+        bgColors10C[i] = 'rgba(192, 75, 75, 1)'
+        bgColors10F[i] = 'rgba(192, 75, 75, 0.2)'
+        bgColors11C[i] = 'rgba(192, 192, 75, 1)'
+        bgColors11F[i] = 'rgba(192, 192, 75, 0.2)'
+        bgColors12C[i] = 'rgba(75, 192, 150, 1)'
+        bgColors12F[i] = 'rgba(75, 192, 150, 0.2)'
+        bgColors13C[i] = 'rgba(75, 192, 75, 1)'
+        bgColors13F[i] = 'rgba(75, 192, 75, 0.2)'
+        bgColors14C[i] = 'rgba(75, 150, 192, 1)'
+        bgColors14F[i] = 'rgba(75, 150, 192, 0.2)'
+        bgColors15C[i] = 'rgba(75, 75, 192, 1)'
+        bgColors15F[i] = 'rgba(75, 75, 192, 0.2)'
 
     myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels
             datasets: [{
-                label: 'Cleared',
-                data: countLevel11C,
-                backgroundColor: bgColorsC,
-                borderColor: bdColorsC,
-                borderWidth: 1
+                label: '10 Cleared',
+                data: countLevel10C,
+                backgroundColor: bgColors10C,
             },
             {
-                label: 'Failed',
-                data: failedCounts,
-                backgroundColor: bgColorsF,
-                borderColor: bdColorsF,
-                borderWidth: 1
+                label: '10 Failed',
+                data: countLevel10F,
+                backgroundColor: bgColors10F,
+            },
+            {
+                label: '11 Cleared',
+                data: countLevel11C,
+                backgroundColor: bgColors11C,
+            },
+            {
+                label: '11 Failed',
+                data: countLevel11F,
+                backgroundColor: bgColors11F,
+            },{
+                label: '12 Cleared',
+                data: countLevel12C,
+                backgroundColor: bgColors12C,
+            },
+            {
+                label: '12 Failed',
+                data: countLevel12F,
+                backgroundColor: bgColors12F,
+            },{
+                label: '13 Cleared',
+                data: countLevel13C,
+                backgroundColor: bgColors13C,
+            },
+            {
+                label: '13 Failed',
+                data: countLevel13F,
+                backgroundColor: bgColors13F,
+            },{
+                label: '14 Cleared',
+                data: countLevel14C,
+                backgroundColor: bgColors14C,
+            },
+            {
+                label: '14 Failed',
+                data: countLevel14F,
+                backgroundColor: bgColors14F,
+            },{
+                label: '15 Cleared',
+                data: countLevel15C,
+                backgroundColor: bgColors15C,
+            },
+            {
+                label: '15 Failed',
+                data: countLevel15F,
+                backgroundColor: bgColors15F,
             }]
         },
         options: {
