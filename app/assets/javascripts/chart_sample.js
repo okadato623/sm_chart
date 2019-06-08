@@ -413,7 +413,7 @@ window.draw_graph = function() {
     targetLevel = targetResult.split(' ');
 
     data = [];
-    data.push(["プレイ日時", "レベル", "タイトル", "難易度", "スコア", "生存時間(秒)", "リザルト", "譜面確認"]);
+    data.push(["プレイ日", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
 
     for (result of gon.allResults) {
       if (result[1] == "true" || result[1] == "false") {
@@ -460,6 +460,8 @@ function makeTable(data, tableId){
             cell.style.textAlign = "center";
           } else if (j == 4) {
             cell.style.textAlign = "right";
+          } else if (j == 2) {
+            cell.style.textAlign = "left";
           } else {
             cell.style.textAlign = "center";
           }
@@ -471,6 +473,15 @@ function makeTable(data, tableId){
             cell.style.backgroundColor = "#ddd";
           } else {
             cell.style.backgroundColor = "#eee";
+          }
+
+          // 幅の設定
+          if (j == 2) {
+            cell.style.width = "320px";
+          } else if (j == 3) {
+            cell.style.width = "110px";
+          } else if (j == 4) {
+            cell.style.width = "70px";
           }
       }
   }
@@ -484,4 +495,11 @@ var table = document.getElementById(tableId);
   if (table.hasChildNodes()) {
     table.removeChild(table.firstChild);
   }
+}
+
+window.onload = function(){
+  var data = [];
+  data.push(["プレイ日", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
+
+  makeTable(data, "table");
 }

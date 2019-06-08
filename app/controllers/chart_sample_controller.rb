@@ -31,7 +31,7 @@ class ChartSampleController < ApplicationController
     if grade != "Failed"
       "-"
     else
-      sprintf( "%.2f", input)
+      sprintf( "%.1f", input)
     end
   end
 
