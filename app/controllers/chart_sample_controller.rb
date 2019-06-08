@@ -2,10 +2,11 @@ class ChartSampleController < ApplicationController
   def index
     gon.dates = []
     gon.allResults = []
-    Result.pluck(:DateTime, :Cleared, :Level, :Title, :Difficulty, :Score, :Grade).reverse.each{ |result|
+    Result.pluck(:DateTime, :Cleared, :Level, :Title, :Difficulty, :Score, :SurviveSeconds, :Grade).reverse.each{ |result|
       result[0] = result[0].to_date.strftime("%m月%d日")
       result[4] = convert_difficulty(result[4])
-      result[6] = convert_result(result[6])
+      result[6] = convert_surviveseconds(result[6], result[7])
+      result[7] = convert_result(result[7])
       gon.allResults << result
       gon.dates << result[0]
     }
@@ -23,6 +24,14 @@ class ChartSampleController < ApplicationController
       "EXPERT"
     when "Challenge"
       "CHALLENGE"
+    end
+  end
+
+  def convert_surviveseconds(input, grade)
+    if grade != "Failed"
+      "-"
+    else
+      sprintf( "%.2f", input)
     end
   end
 
