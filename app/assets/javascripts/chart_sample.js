@@ -376,6 +376,8 @@ window.draw_graph = function() {
       ]
     },
     options: {
+      responsive: false,
+      maintainAspectRatio: false,
       scales: {
         xAxes: [
           {
@@ -411,7 +413,7 @@ window.draw_graph = function() {
     targetLevel = targetResult.split(' ');
 
     data = [];
-    data.push(["プレイ日時", "レベル", "曲名", "難易度", "リザルト"]);
+    data.push(["プレイ日時", "レベル", "タイトル", "難易度", "スコア", "リザルト", "譜面確認"]);
 
     for (result of gon.allResults) {
       if (result[1] == "true" || result[1] == "false") {
@@ -442,7 +444,25 @@ function makeTable(data, tableId){
       rows.push(table.insertRow(-1));  // 行の追加
       for(j = 0; j < data[0].length; j++){
           cell=rows[i].insertCell(-1);
-          cell.appendChild(document.createTextNode(data[i][j]));
+          if (j < 6 || i == 0) {
+            cell.appendChild(document.createTextNode(data[i][j]));
+          } else {
+            var link = document.createElement("a");  
+            //リンク先設定  
+            link.href = `https://www.youtube.com/results?search_query=${data[i][2]}+${data[i][3]}+sp`;
+            link.target = "_blank";
+            link.appendChild(document.createTextNode("Youtube"));  
+            cell.appendChild(link);
+          }
+
+          // 位置の設定
+          if (i == 0) {
+            cell.style.textAlign = "center";
+          } else if (j == 4) {
+            cell.style.textAlign = "right";
+          } else {
+            cell.style.textAlign = "center";
+          }
           
           // 背景色の設定
           if (i == 0) {
