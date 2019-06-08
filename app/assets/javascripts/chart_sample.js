@@ -447,9 +447,9 @@ function makeTable(data, tableId){
           if (j < 7 || i == 0) {
             cell.appendChild(document.createTextNode(data[i][j]));
           } else {
-            var link = document.createElement("a");  
+            var link = document.createElement("a");
             //リンク先設定  
-            link.href = `https://www.youtube.com/results?search_query=${data[i][2]}+${data[i][3]}+sp`;
+            link.href = `https://www.youtube.com/results?search_query=${data[i][2]}+${data[i][3]}+SINGLE 譜面確認`;
             link.target = "_blank";
             link.appendChild(document.createTextNode("Youtube"));  
             cell.appendChild(link);
