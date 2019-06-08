@@ -373,8 +373,50 @@ window.draw_graph = function() {
     }
   
     item = item[0];
-    let data = item._chart.config.data.datasets[item._datasetIndex].label;
-    let dateLabel = item._chart.config.data.labels[item._index];
-    alert(`Clicked at (${dateLabel}, ${data})`);
+    targetResult = item._chart.config.data.datasets[item._datasetIndex].label;
+    dateLabel = item._chart.config.data.labels[item._index];
+
+    targetLevel = targetResult.split(' ');
+
+    data = [];
+    for (result of gon.allResults) {
+      if (result[0] == dateLabel && result[2] == targetLevel[0]) {
+        data.push(result);
+      } else if ((result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "8") || 
+                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "9") ||
+                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "10")) {
+        data.push(result);
+      }
+    }
+    clearTable("table");
+    makeTable(data,"table");
   });
 };
+
+// 表の動的作成
+function makeTable(data, tableId){
+  // 表の作成開始
+  var rows=[];
+  var table = document.createElement("table");
+
+  // 表に2次元配列の要素を格納
+  for(i = 0; i < data.length; i++){
+      rows.push(table.insertRow(-1));  // 行の追加
+      for(j = 0; j < data[0].length; j++){
+          cell=rows[i].insertCell(-1);
+          cell.appendChild(document.createTextNode(data[i][j]));
+          // 背景色の設定
+          cell.style.backgroundColor = "#ddd"; // ヘッダ行以外
+      }
+  }
+  // 指定したdiv要素に表を加える
+  document.getElementById(tableId).appendChild(table);
+}
+
+function clearTable(tableId){
+var table = document.getElementById(tableId);
+
+  if (table.hasChildNodes()) {
+    table.removeChild(table.firstChild);
+  }
+}
