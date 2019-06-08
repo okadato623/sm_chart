@@ -411,12 +411,18 @@ window.draw_graph = function() {
     targetLevel = targetResult.split(' ');
 
     data = [];
+    data.push(["プレイ日時", "レベル", "曲名", "難易度", "リザルト"]);
+
     for (result of gon.allResults) {
-      if (result[0] == dateLabel && result[2] == targetLevel[0]) {
+      if (result[1] == "true" || result[1] == "false") {
+        result.splice(1, 1);
+      }
+
+      if (result[0] == dateLabel && result[1] == targetLevel[0]) {
         data.push(result);
-      } else if ((result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "8") || 
-                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "9") ||
-                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "10")) {
+      } else if ((result[0] == dateLabel && targetLevel[0] == "8-10" && result[1] == "8") || 
+                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[1] == "9") ||
+                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[1] == "10")) {
         data.push(result);
       }
     }
@@ -437,8 +443,15 @@ function makeTable(data, tableId){
       for(j = 0; j < data[0].length; j++){
           cell=rows[i].insertCell(-1);
           cell.appendChild(document.createTextNode(data[i][j]));
+          
           // 背景色の設定
-          cell.style.backgroundColor = "#ddd"; // ヘッダ行以外
+          if (i == 0) {
+            cell.style.backgroundColor = "#aaa";
+          } else if (i % 2 == 0) {
+            cell.style.backgroundColor = "#ddd";
+          } else {
+            cell.style.backgroundColor = "#eee";
+          }
       }
   }
   // 指定したdiv要素に表を加える
