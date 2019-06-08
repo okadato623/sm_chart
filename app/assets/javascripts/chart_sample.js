@@ -281,97 +281,97 @@ window.draw_graph = function() {
           data: countLevel10C,
           backgroundColor: bgColors10C,
           borderColor: bgColors10C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '8-10 F',
           data: countLevel10F,
           backgroundColor: bgColors10F,
           borderColor: bgColors10C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '11 C',
           data: countLevel11C,
           backgroundColor: bgColors11C,
           borderColor: bgColors11C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '11 F',
           data: countLevel11F,
           backgroundColor: bgColors11F,
           borderColor: bgColors11C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '12 C',
           data: countLevel12C,
           backgroundColor: bgColors12C,
           borderColor: bgColors12C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '12 F',
           data: countLevel12F,
           backgroundColor: bgColors12F,
           borderColor: bgColors12C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '13 C',
           data: countLevel13C,
           backgroundColor: bgColors13C,
           borderColor: bgColors13C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '13 F',
           data: countLevel13F,
           backgroundColor: bgColors13F,
           borderColor: bgColors13C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '14 C',
           data: countLevel14C,
           backgroundColor: bgColors14C,
           borderColor: bgColors14C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '14 F',
           data: countLevel14F,
           backgroundColor: bgColors14F,
           borderColor: bgColors14C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '15 C',
           data: countLevel15C,
           backgroundColor: bgColors15C,
           borderColor: bgColors15C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '15 F',
           data: countLevel15F,
           backgroundColor: bgColors15F,
           borderColor: bgColors15C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '16 C',
           data: countLevel16C,
           backgroundColor: bgColors16C,
           borderColor: bgColors16C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '16 F',
           data: countLevel16F,
           backgroundColor: bgColors16F,
           borderColor: bgColors16C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '17 C',
           data: countLevel17C,
           backgroundColor: bgColors17C,
           borderColor: bgColors17C,
-          borderWidth: 1
+          borderWidth: 2
         }, {
           label: '17 F',
           data: countLevel17F,
           backgroundColor: bgColors17F,
           borderColor: bgColors17C,
-          borderWidth: 1
+          borderWidth: 2
         }
       ]
     },
