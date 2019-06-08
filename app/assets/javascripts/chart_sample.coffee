@@ -10,6 +10,8 @@ window.draw_graph = ->
     level13C = new Array()
     level14C = new Array()
     level15C = new Array()
+    level16C = new Array()
+    level17C = new Array()
     
     level10F = new Array()
     level11F = new Array()
@@ -17,6 +19,8 @@ window.draw_graph = ->
     level13F = new Array()
     level14F = new Array()
     level15F = new Array()
+    level16F = new Array()
+    level17F = new Array()
 
     countLevel10C = new Array()
     countLevel11C = new Array()
@@ -24,6 +28,8 @@ window.draw_graph = ->
     countLevel13C = new Array()
     countLevel14C = new Array()
     countLevel15C = new Array()
+    countLevel16C = new Array()
+    countLevel17C = new Array()
 
     countLevel10F = new Array()
     countLevel11F = new Array()
@@ -31,6 +37,8 @@ window.draw_graph = ->
     countLevel13F = new Array()
     countLevel14F = new Array()
     countLevel15F = new Array()
+    countLevel16F = new Array()
+    countLevel17F = new Array()
 
     bgColors10C = new Array(barNum)
     bgColors11C = new Array(barNum)
@@ -38,6 +46,8 @@ window.draw_graph = ->
     bgColors13C = new Array(barNum)
     bgColors14C = new Array(barNum)
     bgColors15C = new Array(barNum)
+    bgColors16C = new Array(barNum)
+    bgColors17C = new Array(barNum)
 
     bgColors10F = new Array(barNum)
     bgColors11F = new Array(barNum)
@@ -45,11 +55,13 @@ window.draw_graph = ->
     bgColors13F = new Array(barNum)
     bgColors14F = new Array(barNum)
     bgColors15F = new Array(barNum)
+    bgColors16F = new Array(barNum)
+    bgColors17F = new Array(barNum)
 
 
     for i, result of gon.allResults
         switch result[2]
-            when "10"
+            when "8", "9", "10"
                 if result[1] == "true"
                     if (level10C[result[0]] == undefined) then level10C[result[0]] = 1 else level10C[result[0]] = level10C[result[0]] + 1
                 else
@@ -79,6 +91,16 @@ window.draw_graph = ->
                     if (level15C[result[0]] == undefined) then level15C[result[0]] = 1 else level15C[result[0]] = level15C[result[0]] + 1
                 else
                     if (level15F[result[0]] == undefined) then level15F[result[0]] = 1 else level15F[result[0]] = level15F[result[0]] + 1
+            when "16"
+                if result[1] == "true"
+                    if (level16C[result[0]] == undefined) then level16C[result[0]] = 1 else level16C[result[0]] = level16C[result[0]] + 1
+                else
+                    if (level16F[result[0]] == undefined) then level16F[result[0]] = 1 else level16F[result[0]] = level16F[result[0]] + 1
+            when "17"
+                if result[1] == "true"
+                    if (level17C[result[0]] == undefined) then level17C[result[0]] = 1 else level17C[result[0]] = level17C[result[0]] + 1
+                else
+                    if (level17F[result[0]] == undefined) then level17F[result[0]] = 1 else level17F[result[0]] = level17F[result[0]] + 1
             else
                 # do nothing
 
@@ -96,6 +118,10 @@ window.draw_graph = ->
         level14F[label] = 0 if (level14F[label] == undefined)
         level15C[label] = 0 if (level15C[label] == undefined)
         level15F[label] = 0 if (level15F[label] == undefined)
+        level16C[label] = 0 if (level16C[label] == undefined)
+        level16F[label] = 0 if (level16F[label] == undefined)
+        level17C[label] = 0 if (level17C[label] == undefined)
+        level17F[label] = 0 if (level17F[label] == undefined)
     
     for label in labels
         countLevel10C.push(level10C[label])
@@ -110,6 +136,10 @@ window.draw_graph = ->
         countLevel14F.push(level14F[label])
         countLevel15C.push(level15C[label])
         countLevel15F.push(level15F[label])
+        countLevel16C.push(level16C[label])
+        countLevel16F.push(level16F[label])
+        countLevel17C.push(level17C[label])
+        countLevel17F.push(level17F[label])
 
     for i in [0...barNum]
         bgColors10C[i] = 'rgba(192, 75, 75, 1)'
@@ -124,66 +154,88 @@ window.draw_graph = ->
         bgColors14F[i] = 'rgba(75, 150, 192, 0.2)'
         bgColors15C[i] = 'rgba(75, 75, 192, 1)'
         bgColors15F[i] = 'rgba(75, 75, 192, 0.2)'
+        bgColors16C[i] = 'rgba(138, 43, 226, 1)'
+        bgColors16F[i] = 'rgba(138, 43, 226, 0.2)'
+        bgColors17C[i] = 'rgba(75, 0, 130, 1)'
+        bgColors17F[i] = 'rgba(75, 0, 130, 0.2)'
 
     myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels
             datasets: [{
-                label: '10 Cleared',
+                label: '8-10 C',
                 data: countLevel10C,
                 backgroundColor: bgColors10C,
             },
             {
-                label: '10 Failed',
+                label: '8-10 F',
                 data: countLevel10F,
                 backgroundColor: bgColors10F,
             },
             {
-                label: '11 Cleared',
+                label: '11 C',
                 data: countLevel11C,
                 backgroundColor: bgColors11C,
             },
             {
-                label: '11 Failed',
+                label: '11 F',
                 data: countLevel11F,
                 backgroundColor: bgColors11F,
             },{
-                label: '12 Cleared',
+                label: '12 C',
                 data: countLevel12C,
                 backgroundColor: bgColors12C,
             },
             {
-                label: '12 Failed',
+                label: '12 F',
                 data: countLevel12F,
                 backgroundColor: bgColors12F,
             },{
-                label: '13 Cleared',
+                label: '13 C',
                 data: countLevel13C,
                 backgroundColor: bgColors13C,
             },
             {
-                label: '13 Failed',
+                label: '13 F',
                 data: countLevel13F,
                 backgroundColor: bgColors13F,
             },{
-                label: '14 Cleared',
+                label: '14 C',
                 data: countLevel14C,
                 backgroundColor: bgColors14C,
             },
             {
-                label: '14 Failed',
+                label: '14 F',
                 data: countLevel14F,
                 backgroundColor: bgColors14F,
             },{
-                label: '15 Cleared',
+                label: '15 C',
                 data: countLevel15C,
                 backgroundColor: bgColors15C,
             },
             {
-                label: '15 Failed',
+                label: '15 F',
                 data: countLevel15F,
                 backgroundColor: bgColors15F,
+            },{
+                label: '16 C',
+                data: countLevel16C,
+                backgroundColor: bgColors16C,
+            },
+            {
+                label: '16 F',
+                data: countLevel16F,
+                backgroundColor: bgColors16F,
+            },{
+                label: '17 C',
+                data: countLevel17C,
+                backgroundColor: bgColors17C,
+            },
+            {
+                label: '17 F',
+                data: countLevel17F,
+                backgroundColor: bgColors17F,
             }]
         },
         options: {
