@@ -413,7 +413,7 @@ window.draw_graph = function() {
     targetLevel = targetResult.split(' ');
 
     data = [];
-    data.push(["プレイ日時", "レベル", "タイトル", "難易度", "スコア", "リザルト", "譜面確認"]);
+    data.push(["プレイ日時", "レベル", "タイトル", "難易度", "スコア", "生存時間(秒)", "リザルト", "譜面確認"]);
 
     for (result of gon.allResults) {
       if (result[1] == "true" || result[1] == "false") {
@@ -444,7 +444,7 @@ function makeTable(data, tableId){
       rows.push(table.insertRow(-1));  // 行の追加
       for(j = 0; j < data[0].length; j++){
           cell=rows[i].insertCell(-1);
-          if (j < 6 || i == 0) {
+          if (j < 7 || i == 0) {
             cell.appendChild(document.createTextNode(data[i][j]));
           } else {
             var link = document.createElement("a");  
