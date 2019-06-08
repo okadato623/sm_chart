@@ -3,7 +3,7 @@ class ChartSampleController < ApplicationController
     gon.dates = []
     gon.allResults = []
     Result.pluck(:DateTime, :Cleared, :Level, :Title, :Difficulty, :Score, :SurviveSeconds, :Grade).reverse.each{ |result|
-      result[0] = result[0].to_date.strftime("%m月%d日")
+      result[0] = result[0].to_date.strftime("%-m月%-d日")
       result[4] = convert_difficulty(result[4])
       result[6] = convert_surviveseconds(result[6], result[7])
       result[7] = convert_result(result[7])
