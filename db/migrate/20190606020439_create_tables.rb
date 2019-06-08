@@ -46,7 +46,6 @@ class CreateTables < ActiveRecord::Migration[5.0]
       t.string   "W5"
       t.string   "Dir"
       t.string   "Difficulty"
-      t.string   "Level"
       t.string   "StepsType"
       t.string   "_id"
       t.string   "_index"
