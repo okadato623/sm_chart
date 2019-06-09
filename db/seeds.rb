@@ -11,3 +11,7 @@ require "csv"
 CSV.foreach('db/All Results.csv', headers: true) do |row|
   Result.create(row.to_hash)
 end
+
+CSV.foreach('db/Stats.csv', headers: true) do |row|
+  Stat.create(row.to_hash)
+end
