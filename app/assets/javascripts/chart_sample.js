@@ -372,6 +372,13 @@ window.draw_graph = function() {
           backgroundColor: bgColors17F,
           borderColor: bgColors17C,
           borderWidth: 2
+        }, {
+          label: 'Burned Calory',
+          type: 'line',
+          fill: false,
+          data: [195.541229, 660.419922, 630.921570, 342.757965, 912.726318, 960.879639, 961.749939, 941.625671, 911.248657, 949.069153, 1017.483093, 758.359009, 974.962585, 713.172913, 820.131714, 561.091492, 1397.190674, 845.723511, 522.770508, 717.602844, 806.568420, 919.505066, 1041.037109, 1081.709106, 971.790955, 906.566040, 966.039062, 1199.247437, 1036.105713, 1089.856079],
+          borderColor: "rgb(0, 172, 115)",
+          yAxisID: "y-axis-calory"
         }
       ]
     },
@@ -389,6 +396,15 @@ window.draw_graph = function() {
             stacked: true,
             ticks: {
               beginAtZero: true
+            }
+          }, {
+            id: "y-axis-calory",
+            type: "linear",
+            position: "right",
+            ticks: {
+              max: 1600,
+              min: 0,
+              stepsize: 1
             }
           }
         ]
