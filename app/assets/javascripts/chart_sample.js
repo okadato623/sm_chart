@@ -441,49 +441,47 @@ function makeTable(data, tableId){
 
   // 表に2次元配列の要素を格納
   for(i = 0; i < data.length; i++){
-      rows.push(table.insertRow(-1));  // 行の追加
-      for(j = 0; j < data[0].length; j++){
-          cell=rows[i].insertCell(-1);
-          if (j < 7 || i == 0) {
-            cell.appendChild(document.createTextNode(data[i][j]));
-          } else {
-            var link = document.createElement("a");
-            //リンク先設定  
-            link.href = `https://www.youtube.com/results?search_query=${data[i][2]}+${data[i][3]}+SINGLE 譜面確認`;
-            link.target = "_blank";
-            link.appendChild(document.createTextNode("Youtube"));  
-            cell.appendChild(link);
-          }
-
-          // 位置の設定
-          if (i == 0) {
-            cell.style.textAlign = "center";
-          } else if (j == 4) {
-            cell.style.textAlign = "right";
-          } else if (j == 2) {
-            cell.style.textAlign = "left";
-          } else {
-            cell.style.textAlign = "center";
-          }
-          
-          // 背景色の設定
-          if (i == 0) {
-            cell.style.backgroundColor = "#aaa";
-          } else if (i % 2 == 0) {
-            cell.style.backgroundColor = "#ddd";
-          } else {
-            cell.style.backgroundColor = "#eee";
-          }
-
-          // 幅の設定
-          if (j == 2) {
-            cell.style.width = "320px";
-          } else if (j == 3) {
-            cell.style.width = "110px";
-          } else if (j == 4) {
-            cell.style.width = "70px";
-          }
+    rows.push(table.insertRow(-1));  // 行の追加
+    for(j = 0; j < data[0].length; j++){
+      cell=rows[i].insertCell(-1);
+      if (j < 7 || i == 0) {
+        cell.appendChild(document.createTextNode(data[i][j]));
+      } else {
+        var link = document.createElement("a");
+        //リンク先設定  
+        link.href = `https://www.youtube.com/results?search_query=${data[i][2]}+${data[i][3]}+SINGLE 譜面確認`;
+        link.target = "_blank";
+        link.appendChild(document.createTextNode("Youtube"));  
+        cell.appendChild(link);
       }
+      // 位置の設定
+      if (i == 0) {
+        cell.style.textAlign = "center";
+      } else if (j == 4) {
+        cell.style.textAlign = "right";
+      } else if (j == 2) {
+        cell.style.textAlign = "left";
+      } else {
+        cell.style.textAlign = "center";
+      }
+      
+      // 背景色の設定
+      if (i == 0) {
+        cell.style.backgroundColor = "#aaa";
+      } else if (i % 2 == 0) {
+        cell.style.backgroundColor = "#ddd";
+      } else {
+        cell.style.backgroundColor = "#eee";
+      }
+      // 幅の設定
+      if (j == 2) {
+        cell.style.width = "320px";
+      } else if (j == 3) {
+        cell.style.width = "110px";
+      } else if (j == 4) {
+        cell.style.width = "70px";
+      }
+    }
   }
   // 指定したdiv要素に表を加える
   document.getElementById(tableId).appendChild(table);
@@ -497,9 +495,74 @@ var table = document.getElementById(tableId);
   }
 }
 
+function makeTargetTable(data, tableId){
+  // 表の作成開始
+  var rows=[];
+  var table = document.createElement("table");
+
+  // 表に2次元配列の要素を格納
+  for(i = 0; i < data.length; i++){
+    rows.push(table.insertRow(-1));  // 行の追加
+    for(j = 0; j < data[0].length; j++){
+      cell=rows[i].insertCell(-1);
+      if (j < 4 || i == 0) {
+        cell.appendChild(document.createTextNode(data[i][j]));
+      } else if (j == 4) {
+        var link = document.createElement("a");
+        //リンク先設定
+        link.href = data[i][j];
+        link.target = "_blank";
+        link.appendChild(document.createTextNode("■"));  
+        cell.appendChild(link);
+      } else {
+        var link = document.createElement("a");
+        //リンク先設定
+        link.href = `https://www.youtube.com/results?search_query=${data[i][1]}+${data[i][2]}+SINGLE 譜面確認`;
+        link.target = "_blank";
+        link.appendChild(document.createTextNode("Youtube"));  
+        cell.appendChild(link);
+      }
+
+      // 位置の設定
+      cell.style.textAlign = "center";
+      
+      // 背景色の設定
+      if (i == 0) {
+        cell.style.backgroundColor = "#aaa";
+      } else if (i % 2 == 0) {
+        cell.style.backgroundColor = "#ddd";
+      } else {
+        cell.style.backgroundColor = "#eee";
+      }
+      // 幅の設定
+      if (j == 1) {
+        cell.style.width = "320px";
+      } else if (j == 2) {
+        cell.style.width = "110px";
+      }
+    }
+  }
+  // 指定したdiv要素に表を加える
+  document.getElementById(tableId).appendChild(table);
+}
+
 window.onload = function(){
   var data = [];
+  var target = [];
   data.push(["プレイ日", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
-
   makeTable(data, "table");
+
+  target.push(["Lv.", "タイトル", "難易度", "クリア", "wiki", "譜面確認"]);
+  target.push(["15", "チルノのパーフェクトさんすう教室", "CHALLENGE","済", "https://www21.atwiki.jp/asigami/pages/2887.html"]);
+  target.push(["15", "初音ミクの消失", "CHALLENGE","", "https://www21.atwiki.jp/asigami/pages/2781.html"]);
+  target.push(["15", "放課後ストライド", "EXPERT","", "https://www21.atwiki.jp/asigami/pages/2561.html"]);
+  target.push(["15", "ロストワンの号哭	", "CHALLENGE","済", "https://www21.atwiki.jp/asigami/pages/2901.html"]);
+  target.push(["15", "ナイト・オブ・ナイツ", "EXPERT","", "https://www21.atwiki.jp/asigami/pages/2519.html"]);
+  target.push(["16", "ANNIVERSARY ∴∵∴ ←↓↑→", "EXPERT","", "https://www21.atwiki.jp/asigami/pages/2998.html"]);
+  target.push(["16", "打打打打打打打打打打", "CHALLENGE","", "https://www21.atwiki.jp/asigami/pages/2748.html"]);
+  target.push(["16", "ナイト・オブ・ナイツ", "CHALLENGE","", "https://www21.atwiki.jp/asigami/pages/2888.html"]);
+  target.push(["16", "輪廻転生", "CHALLENGE","", "https://www21.atwiki.jp/asigami/pages/2855.html"]);
+  target.push(["16", "六兆年と一夜物語", "CHALLENGE","", "https://www21.atwiki.jp/asigami/pages/2900.html"]);
+  
+  makeTargetTable(target, "targetTable");
 }
