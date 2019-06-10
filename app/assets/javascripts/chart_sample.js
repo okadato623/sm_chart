@@ -4,8 +4,8 @@ window.clear_graph = function() {
 
   var myCanvas = document.createElement("canvas");
   myCanvas.id = "myChart";
-  myCanvas.width = 800;
-  myCanvas.height = 800;
+  myCanvas.width = "800";
+  myCanvas.height = "800";
   var objBody = document.getElementsByTagName("body").item(0);
   var table = document.getElementById("table")
   objBody.insertBefore(myCanvas, table);
@@ -73,24 +73,18 @@ window.draw_graph = function() {
   
   fromDate = new Date(document.getElementById("fromDate").value);
   toDate = new Date(document.getElementById("toDate").value);
-
   if (fromDate.getTime() > toDate.getTime()) {
     tmp = fromDate;
     fromDate = toDate;
     toDate = tmp;
   }
-
-  fromDate = formatDate(fromDate, 'MM月dd日');
   toDate.setDate(toDate.getDate() + 1);
-  toDate = formatDate(toDate, 'MM月dd日');
 
-  for (i in labels) {
-    if (labels[i] == fromDate) {
-      start_point = i;
-    } else if (labels[i] == toDate) {
-      labels.splice(i, labels.length - i);
-      burnedCalory.splice(i, burnedCalory.length - i);
-    }
+  start_point = findFromDate(labels, fromDate);
+  end_point = findToDate(labels, toDate);
+  if (end_point != 0) {
+    labels.splice(end_point, labels.length - end_point);
+    burnedCalory.splice(end_point, burnedCalory.length - end_point);
   }
   labels.splice(0, start_point);
   burnedCalory.splice(0, start_point);
@@ -486,6 +480,25 @@ window.draw_graph = function() {
   });
 };
 
+function findFromDate(dates, fromDate) {
+  for (i in dates) {
+    if (dates[i] == formatDate(fromDate, 'MM月dd日')){
+      return i;
+    }
+  }
+  fromDate.setDate(fromDate.getDate() + 1);
+  return findFromDate(dates, fromDate);
+}
+
+function findToDate(dates, toDate) {
+  for (i in dates) {
+    if (dates[i] == formatDate(toDate, 'MM月dd日')){
+      return i;
+    }
+  }
+  toDate.setDate(toDate.getDate() + 1);
+  return findToDate(dates, toDate);
+}
 // 表の動的作成
 function makeTable(data, tableId){
   // 表の作成開始
@@ -512,9 +525,9 @@ function makeTable(data, tableId){
       // 位置の設定
       if (i == 0) {
         cell.style.textAlign = "center";
-      } else if (j == 4) {
+      } else if (j == 5) {
         cell.style.textAlign = "right";
-      } else if (j == 2) {
+      } else if (j == 3) {
         cell.style.textAlign = "left";
       } else {
         cell.style.textAlign = "center";
