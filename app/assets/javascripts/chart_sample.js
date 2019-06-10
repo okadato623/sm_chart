@@ -86,18 +86,14 @@ window.draw_graph = function() {
 
   for (i in labels) {
     if (labels[i] == fromDate) {
-      labels.splice(0, i);
-      burnedCalory.splice(0, i);
-    }
-  }
-
-  for (i in labels) {
-    if (labels[i] == toDate) {
+      start_point = i;
+    } else if (labels[i] == toDate) {
       labels.splice(i, labels.length - i);
       burnedCalory.splice(i, burnedCalory.length - i);
     }
   }
-
+  labels.splice(0, start_point);
+  burnedCalory.splice(0, start_point);
 
   for (i in ref) {
     result = ref[i];
@@ -474,18 +470,14 @@ window.draw_graph = function() {
     targetLevel = targetResult.split(' ');
 
     data = [];
-    data.push(["プレイ日", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
+    data.push(["プレイ日", "", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
 
     for (result of gon.allResults) {
-      if (result[1] == "true" || result[1] == "false") {
-        result.splice(1, 1);
-      }
-
-      if (result[0] == dateLabel && result[1] == targetLevel[0]) {
+      if (result[0] == dateLabel && result[2] == targetLevel[0]) {
         data.push(result);
-      } else if ((result[0] == dateLabel && targetLevel[0] == "8-10" && result[1] == "8") || 
-                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[1] == "9") ||
-                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[1] == "10")) {
+      } else if ((result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "8") || 
+                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "9") ||
+                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "10")) {
         data.push(result);
       }
     }
@@ -505,7 +497,9 @@ function makeTable(data, tableId){
     rows.push(table.insertRow(-1));  // 行の追加
     for(j = 0; j < data[0].length; j++){
       cell=rows[i].insertCell(-1);
-      if (j < 7 || i == 0) {
+      if (j == 1) {
+        continue;
+      } else if (j < 8 || i == 0) {
         cell.appendChild(document.createTextNode(data[i][j]));
       } else {
         var link = document.createElement("a");
@@ -535,11 +529,11 @@ function makeTable(data, tableId){
         cell.style.backgroundColor = "#eee";
       }
       // 幅の設定
-      if (j == 2) {
+      if (j == 3) {
         cell.style.width = "320px";
-      } else if (j == 3) {
-        cell.style.width = "110px";
       } else if (j == 4) {
+        cell.style.width = "110px";
+      } else if (j == 5) {
         cell.style.width = "70px";
       }
     }
@@ -632,7 +626,7 @@ function formatDate (date, format) {
 window.onload = function(){
   var data = [];
   var target = [];
-  data.push(["プレイ日", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
+  data.push(["プレイ日", "", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
   makeTable(data, "table");
 
   target.push(["Lv.", "タイトル", "難易度", "クリア", "wiki", "譜面確認"]);
@@ -650,6 +644,6 @@ window.onload = function(){
   makeTargetTable(target, "targetTable");
 }
 
-function start(){
+function onload_proc(){
   getToday();
 }
