@@ -4,7 +4,7 @@ window.clear_graph = function() {
 
   var myCanvas = document.createElement("canvas");
   myCanvas.id = "myChart";
-  myCanvas.width = "800";
+  myCanvas.width = "850";
   myCanvas.height = "800";
   var objBody = document.getElementsByTagName("body").item(0);
   var table = document.getElementById("table")
