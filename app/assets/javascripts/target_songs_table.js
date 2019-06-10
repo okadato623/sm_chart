@@ -64,5 +64,5 @@ window.onload = function(){
     target.push([gon.targetSongs[i].level, gon.targetSongs[i].title, gon.targetSongs[i].difficulty, gon.targetSongs[i].cleared, gon.targetSongs[i].wikilink]);
   }
 
-  makeTargetTable(target, "targetTable");
+  // makeTargetTable(target, "targetTable");
 }
