@@ -1,5 +1,22 @@
+window.clear_graph = function() {
+  var myChart = document.getElementById("myChart");
+  myChart.remove();
+
+  var myCanvas = document.createElement("canvas");
+  myCanvas.id = "myChart";
+  myCanvas.width = 800;
+  myCanvas.height = 800;
+  var objBody = document.getElementsByTagName("body").item(0);
+  var table = document.getElementById("table")
+  objBody.insertBefore(myCanvas, table);
+}
+
 window.draw_graph = function() {
   var barNum, bgColors10C, bgColors10F, bgColors11C, bgColors11F, bgColors12C, bgColors12F, bgColors13C, bgColors13F, bgColors14C, bgColors14F, bgColors15C, bgColors15F, bgColors16C, bgColors16F, bgColors17C, bgColors17F, countLevel10C, countLevel10F, countLevel11C, countLevel11F, countLevel12C, countLevel12F, countLevel13C, countLevel13F, countLevel14C, countLevel14F, countLevel15C, countLevel15F, countLevel16C, countLevel16F, countLevel17C, countLevel17F, ctx, i, j, k, l, label, labels, len, len1, level10C, level10F, level11C, level11F, level12C, level12F, level13C, level13F, level14C, level14F, level15C, level15F, level16C, level16F, level17C, level17F, myChart, ref, ref1, result, set;
+  
+  // TODO: ここの手動更新とかいう労苦をなくす
+  var burnedCalory = new Array(195.541229, 660.419922, 630.921570, 342.757965, 912.726318, 960.879639, 961.749939, 941.625671, 911.248657, 949.069153, 1017.483093, 758.359009, 974.962585, 713.172913, 820.131714, 561.091492, 1397.190674, 845.723511, 522.770508, 717.602844, 806.568420, 919.505066, 1041.037109, 1081.709106, 971.790955, 906.566040, 966.039062, 1199.247437, 1036.105713, 1089.856079);
+  
   ctx = document.getElementById("myChart").getContext('2d');
   set = new Set(gon.dates);
   barNum = set.size;
@@ -53,6 +70,34 @@ window.draw_graph = function() {
   bgColors16F = new Array(barNum);
   bgColors17F = new Array(barNum);
   ref = gon.allResults;
+  
+  fromDate = new Date(document.getElementById("fromDate").value);
+  toDate = new Date(document.getElementById("toDate").value);
+
+  if (fromDate.getTime() > toDate.getTime()) {
+    tmp = fromDate;
+    fromDate = toDate;
+    toDate = tmp;
+  }
+
+  fromDate = formatDate(fromDate, 'MM月dd日');
+  toDate.setDate(toDate.getDate() + 1);
+  toDate = formatDate(toDate, 'MM月dd日');
+
+  for (i in labels) {
+    if (labels[i] == fromDate) {
+      labels.splice(0, i);
+      burnedCalory.splice(0, i);
+    }
+  }
+
+  for (i in labels) {
+    if (labels[i] == toDate) {
+      labels.splice(i, labels.length - i);
+      burnedCalory.splice(i, burnedCalory.length - i);
+    }
+  }
+
 
   for (i in ref) {
     result = ref[i];
@@ -376,7 +421,7 @@ window.draw_graph = function() {
           label: 'Burned Calory',
           type: 'line',
           fill: false,
-          data: [195.541229, 660.419922, 630.921570, 342.757965, 912.726318, 960.879639, 961.749939, 941.625671, 911.248657, 949.069153, 1017.483093, 758.359009, 974.962585, 713.172913, 820.131714, 561.091492, 1397.190674, 845.723511, 522.770508, 717.602844, 806.568420, 919.505066, 1041.037109, 1081.709106, 971.790955, 906.566040, 966.039062, 1199.247437, 1036.105713, 1089.856079],
+          data: burnedCalory,
           borderColor: "rgb(0, 172, 115)",
           yAxisID: "y-axis-calory"
         }
@@ -562,6 +607,28 @@ function makeTargetTable(data, tableId){
   document.getElementById(tableId).appendChild(table);
 }
 
+function getToday() {
+  var today = new Date();
+  today.setDate(today.getDate());
+  var yyyy = today.getFullYear();
+  var mm = ("0"+(today.getMonth()+1)).slice(-2);
+  var dd = ("0"+today.getDate()).slice(-2);
+  document.getElementById("fromDate").max=yyyy+'-'+mm+'-'+dd;
+  document.getElementById("toDate").max=yyyy+'-'+mm+'-'+dd;
+  document.getElementById("toDate").value=yyyy+'-'+mm+'-'+dd;
+}
+
+function formatDate (date, format) {
+  format = format.replace(/yyyy/g, date.getFullYear());
+  format = format.replace(/MM/g, ('' + (date.getMonth() + 1)).slice(-2));
+  format = format.replace(/dd/g, ('' + date.getDate()).slice(-2));
+  format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
+  format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+  format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+  format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
+  return format;
+};
+
 window.onload = function(){
   var data = [];
   var target = [];
@@ -581,4 +648,8 @@ window.onload = function(){
   target.push(["16", "六兆年と一夜物語", "CHALLENGE","", "https://www21.atwiki.jp/asigami/pages/2900.html"]);
   
   makeTargetTable(target, "targetTable");
+}
+
+function start(){
+  getToday();
 }
