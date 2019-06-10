@@ -1,5 +1,6 @@
 class ChartSampleController < ApplicationController
   def index
+    dates = []
     gon.dates = []
     gon.allResults = []
     Result.pluck(:DateTime, :Cleared, :Level, :Title, :Difficulty, :Score, :SurviveSeconds, :Grade).reverse.each{ |result|
@@ -8,8 +9,9 @@ class ChartSampleController < ApplicationController
       result[6] = convert_surviveseconds(result[6], result[7])
       result[7] = convert_result(result[7])
       gon.allResults << result
-      gon.dates << result[0]
+      dates << result[0]
     }
+    gon.dates = dates.uniq
   end
 
   def convert_difficulty(input)
