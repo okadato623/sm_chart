@@ -2,15 +2,17 @@
 <head>
 </head>
 <body>
-  <details open>
+  <details>
     <summary>クリア目標曲</summary>
     <%# <div id="targetTable"></div> %>
-    <table border="1">
-    <thead>
+    <div id="songs">
+    <table>
+    <thead bgcolor="#aaa">
       <tr>
-        <th>曲名</th>
-        <th>難易度</th>
-        <th>Lv.</th>
+        <th class="sort" data-sort="title">タイトル</th>
+        <th class="sort" data-sort="difficulty">難易度</th>
+        <th class="sort" data-sort="level">Lv.</th>
+        <th>譜面確認</th>
         <th>削除</th>
       </tr>
     </thead>
@@ -18,14 +20,17 @@
     <tbody class="list">
     <% @targetSong.each do |song| %>
     <tr>
-      <td>
+      <td class="title" width="400px">
         <%= song.title %>
       </td>
-      <td align="center">
+      <td class="difficulty" align="center">
         <%= song.difficulty %>
       </td>
-      <td align="center">
+      <td class="level" align="center">
         <%= song.level %>
+      </td>
+      <td align="center">
+        <%= link_to 'Youtube', "https://www.youtube.com/results?search_query=#{song.title} #{song.difficulty} SINGLE 譜面確認", target: :_blank %>
       </td>
       <td align="center">
         <%= link_to '■', song, method: :delete %>
@@ -56,3 +61,29 @@
   <script>draw_graph();</script>
   <div id="table"></div>
 </body>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script>
+var options = {
+  valueNames: [ 'title', 'difficulty', 'level' ]
+};
+var songList = new List('songs', options);
+</script>
+
+<style>
+table td {
+	background: #ddd;
+}
+table tr:nth-child(odd) td {
+	background: #eee;
+}
+th {
+font-weight: normal;
+}
+.sort.desc:after {
+  content:"▼";
+}
+.sort.asc:after {
+  content:"▲";
+}
+</style>
