@@ -17,12 +17,19 @@ function makeTargetTable(data, tableId){
         link.target = "_blank";
         link.appendChild(document.createTextNode("■"));  
         cell.appendChild(link);
-      } else {
+      } else if (j == 5) {
         var link = document.createElement("a");
         //リンク先設定
         link.href = `https://www.youtube.com/results?search_query=${data[i][1]}+${data[i][2]}+SINGLE 譜面確認`;
         link.target = "_blank";
         link.appendChild(document.createTextNode("Youtube"));  
+        cell.appendChild(link);
+      } else {
+        var link = document.createElement("a");
+        //リンク先設定
+        link.href = data[i];
+        link.target = "_blank";
+        link.appendChild(document.createTextNode("■"));  
         cell.appendChild(link);
       }
 
@@ -52,7 +59,7 @@ function makeTargetTable(data, tableId){
 window.onload = function(){
   var target = [];
 
-  target.push(["Lv.", "タイトル", "難易度", "クリア", "wiki", "譜面確認"]);
+  target.push(["Lv.", "タイトル", "難易度", "クリア", "wiki", "譜面確認", "削除"]);
   for (i in gon.targetSongs) {
     target.push([gon.targetSongs[i].level, gon.targetSongs[i].title, gon.targetSongs[i].difficulty, gon.targetSongs[i].cleared, gon.targetSongs[i].wikilink]);
   }
