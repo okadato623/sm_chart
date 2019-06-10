@@ -13,10 +13,10 @@ class ChartSampleController < ApplicationController
     }
     gon.dates = dates.uniq
 
-    gon.targetSongs = []
-    TargetSong.all.each{ |song|
-      gon.targetSongs << song
-    }
+    @targetSong = TargetSong.all
+    gon.targetSongs = @targetSong
+
+    @newSong = TargetSong.new
   end
 
   def convert_difficulty(input)
