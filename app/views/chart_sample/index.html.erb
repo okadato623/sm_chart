@@ -9,30 +9,35 @@
     <thead>
       <tr>
         <th>曲名</th>
-        <th>レベル</th>
+        <th>難易度</th>
+        <th>Lv.</th>
         <th>削除</th>
       </tr>
     </thead>
     <!-- IMPORTANT, class="list" have to be at tbody -->
     <tbody class="list">
-    <tr>
     <% @targetSong.each do |song| %>
     <tr>
-    <td>
-      <%= song.title %>
-    </td>
-    <td>
-      <%= song.level %>
-    </td>
-    <td>
-      <%= link_to '■', song, method: :delete %>
-    </td>
+      <td>
+        <%= song.title %>
+      </td>
+      <td align="center">
+        <%= song.difficulty %>
+      </td>
+      <td align="center">
+        <%= song.level %>
+      </td>
+      <td align="center">
+        <%= link_to '■', song, method: :delete %>
+      </td>
     </tr>
     <% end %>
     </table>
+
     <%= form_for @newSong do |f| %>
-      <%= f.text_field :title %>
-      <%= f.text_field :level %>
+      <%= f.text_field :title, :size => "45" %>
+      <%= f.select :difficulty, [["DIFFICULT","DIFFICULT"],["EXPERT","EXPERT"],["CHALLENGE","CHALLENGE"]],  :selected => ["CHALLENGE","CHALLENGE"]%>
+      <%= f.select :level, [[13,13],[14,14],[15,15],[16,16],[17,17]], :selected => [15,15] %>
       <%= f.submit '追加', class: 'btn btn-primary' %>
     <% end %>
   </details>

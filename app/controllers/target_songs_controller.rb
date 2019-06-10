@@ -25,7 +25,7 @@ class TargetSongsController < ApplicationController
 
   private
   def target_songs_param
-    params.require(:target_song).permit(:title, :level)
+    params.require(:target_song).permit(:title, :difficulty,:level)
   end
 
   def set_target_song
