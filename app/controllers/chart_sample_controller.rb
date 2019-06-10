@@ -12,6 +12,11 @@ class ChartSampleController < ApplicationController
       dates << result[0]
     }
     gon.dates = dates.uniq
+
+    gon.targetSongs = []
+    TargetSong.all.each{ |song|
+      gon.targetSongs << song
+    }
   end
 
   def convert_difficulty(input)
