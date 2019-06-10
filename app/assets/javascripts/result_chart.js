@@ -15,7 +15,7 @@ window.draw_graph = function() {
   var barNum, bgColors10C, bgColors10F, bgColors11C, bgColors11F, bgColors12C, bgColors12F, bgColors13C, bgColors13F, bgColors14C, bgColors14F, bgColors15C, bgColors15F, bgColors16C, bgColors16F, bgColors17C, bgColors17F, countLevel10C, countLevel10F, countLevel11C, countLevel11F, countLevel12C, countLevel12F, countLevel13C, countLevel13F, countLevel14C, countLevel14F, countLevel15C, countLevel15F, countLevel16C, countLevel16F, countLevel17C, countLevel17F, ctx, i, j, k, l, label, labels, len, len1, level10C, level10F, level11C, level11F, level12C, level12F, level13C, level13F, level14C, level14F, level15C, level15F, level16C, level16F, level17C, level17F, myChart, ref, ref1, result, set;
   
   // TODO: ここの手動更新とかいう労苦をなくす
-  var burnedCalory = new Array(195.541229, 660.419922, 630.921570, 342.757965, 912.726318, 960.879639, 961.749939, 941.625671, 911.248657, 949.069153, 1017.483093, 758.359009, 974.962585, 713.172913, 820.131714, 561.091492, 1397.190674, 845.723511, 522.770508, 717.602844, 806.568420, 919.505066, 1041.037109, 1081.709106, 971.790955, 906.566040, 966.039062, 1199.247437, 1036.105713, 1089.856079);
+  var burnedCalory = new Array(195.541229, 660.419922, 630.921570, 342.757965, 912.726318, 960.879639, 961.749939, 941.625671, 911.248657, 949.069153, 1017.483093, 758.359009, 974.962585, 713.172913, 820.131714, 561.091492, 1397.190674, 845.723511, 522.770508, 717.602844, 806.568420, 919.505066, 1041.037109, 1081.709106, 971.790955, 906.566040, 966.039062, 1199.247437, 1036.105713, 1089.856079, 1107.594116);
   
   ctx = document.getElementById("myChart").getContext('2d');
   set = new Set(gon.dates);
@@ -587,7 +587,6 @@ function formatDate (date, format) {
 
 window.onload = function(){
   var data = [];
-  var target = [];
   data.push(["プレイ日", "", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
   makeTable(data, "table");
 }
