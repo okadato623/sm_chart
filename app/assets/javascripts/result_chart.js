@@ -7,17 +7,111 @@ window.clear_graph = function() {
   myCanvas.width = "850";
   myCanvas.height = "800";
   var objBody = document.getElementsByTagName("body").item(0);
-  var table = document.getElementById("table")
+  var table = document.getElementById("table");
   objBody.insertBefore(myCanvas, table);
-}
+};
 
 window.draw_graph = function() {
-  var barNum, bgColors10C, bgColors10F, bgColors11C, bgColors11F, bgColors12C, bgColors12F, bgColors13C, bgColors13F, bgColors14C, bgColors14F, bgColors15C, bgColors15F, bgColors16C, bgColors16F, bgColors17C, bgColors17F, countLevel10C, countLevel10F, countLevel11C, countLevel11F, countLevel12C, countLevel12F, countLevel13C, countLevel13F, countLevel14C, countLevel14F, countLevel15C, countLevel15F, countLevel16C, countLevel16F, countLevel17C, countLevel17F, ctx, i, j, k, l, label, labels, len, len1, level10C, level10F, level11C, level11F, level12C, level12F, level13C, level13F, level14C, level14F, level15C, level15F, level16C, level16F, level17C, level17F, myChart, ref, ref1, result, set;
-  
+  var barNum,
+    bgColors10C,
+    bgColors10F,
+    bgColors11C,
+    bgColors11F,
+    bgColors12C,
+    bgColors12F,
+    bgColors13C,
+    bgColors13F,
+    bgColors14C,
+    bgColors14F,
+    bgColors15C,
+    bgColors15F,
+    bgColors16C,
+    bgColors16F,
+    bgColors17C,
+    bgColors17F,
+    countLevel10C,
+    countLevel10F,
+    countLevel11C,
+    countLevel11F,
+    countLevel12C,
+    countLevel12F,
+    countLevel13C,
+    countLevel13F,
+    countLevel14C,
+    countLevel14F,
+    countLevel15C,
+    countLevel15F,
+    countLevel16C,
+    countLevel16F,
+    countLevel17C,
+    countLevel17F,
+    ctx,
+    i,
+    j,
+    k,
+    l,
+    label,
+    labels,
+    len,
+    len1,
+    level10C,
+    level10F,
+    level11C,
+    level11F,
+    level12C,
+    level12F,
+    level13C,
+    level13F,
+    level14C,
+    level14F,
+    level15C,
+    level15F,
+    level16C,
+    level16F,
+    level17C,
+    level17F,
+    myChart,
+    ref,
+    ref1,
+    result,
+    set;
+
   // TODO: ここの手動更新とかいう労苦をなくす
-  var burnedCalory = new Array(195.541229, 660.419922, 630.921570, 342.757965, 912.726318, 960.879639, 961.749939, 941.625671, 911.248657, 949.069153, 1017.483093, 758.359009, 974.962585, 713.172913, 820.131714, 561.091492, 1397.190674, 845.723511, 522.770508, 717.602844, 806.568420, 919.505066, 1041.037109, 1081.709106, 971.790955, 906.566040, 966.039062, 1199.247437, 1036.105713, 1089.856079, 1107.594116);
-  
-  ctx = document.getElementById("myChart").getContext('2d');
+  var burnedCalory = new Array(
+    195.541229,
+    660.419922,
+    630.92157,
+    342.757965,
+    912.726318,
+    960.879639,
+    961.749939,
+    941.625671,
+    911.248657,
+    949.069153,
+    1017.483093,
+    758.359009,
+    974.962585,
+    713.172913,
+    820.131714,
+    561.091492,
+    1397.190674,
+    845.723511,
+    522.770508,
+    717.602844,
+    806.56842,
+    919.505066,
+    1041.037109,
+    1081.709106,
+    971.790955,
+    906.56604,
+    966.039062,
+    1199.247437,
+    1036.105713,
+    1089.856079,
+    1107.594116
+  );
+
+  ctx = document.getElementById("myChart").getContext("2d");
   set = new Set(gon.dates);
   barNum = set.size;
   labels = Array.from(set.values());
@@ -70,7 +164,7 @@ window.draw_graph = function() {
   bgColors16F = new Array(barNum);
   bgColors17F = new Array(barNum);
   ref = gon.allResults;
-  
+
   fromDate = new Date(document.getElementById("fromDate").value);
   toDate = new Date(document.getElementById("toDate").value);
   if (fromDate.getTime() > toDate.getTime()) {
@@ -92,10 +186,10 @@ window.draw_graph = function() {
   for (i in ref) {
     result = ref[i];
     switch (result[2]) {
-      case "8":
-      case "9":
-      case "10":
-        if (result[1] === "true") {
+      case 8:
+      case 9:
+      case 10:
+        if (result[1] === true) {
           if (level10C[result[0]] === void 0) {
             level10C[result[0]] = 1;
           } else {
@@ -109,8 +203,8 @@ window.draw_graph = function() {
           }
         }
         break;
-      case "11":
-        if (result[1] === "true") {
+      case 11:
+        if (result[1] === true) {
           if (level11C[result[0]] === void 0) {
             level11C[result[0]] = 1;
           } else {
@@ -124,8 +218,8 @@ window.draw_graph = function() {
           }
         }
         break;
-      case "12":
-        if (result[1] === "true") {
+      case 12:
+        if (result[1] === true) {
           if (level12C[result[0]] === void 0) {
             level12C[result[0]] = 1;
           } else {
@@ -139,8 +233,8 @@ window.draw_graph = function() {
           }
         }
         break;
-      case "13":
-        if (result[1] === "true") {
+      case 13:
+        if (result[1] === true) {
           if (level13C[result[0]] === void 0) {
             level13C[result[0]] = 1;
           } else {
@@ -154,8 +248,8 @@ window.draw_graph = function() {
           }
         }
         break;
-      case "14":
-        if (result[1] === "true") {
+      case 14:
+        if (result[1] === true) {
           if (level14C[result[0]] === void 0) {
             level14C[result[0]] = 1;
           } else {
@@ -169,8 +263,8 @@ window.draw_graph = function() {
           }
         }
         break;
-      case "15":
-        if (result[1] === "true") {
+      case 15:
+        if (result[1] === true) {
           if (level15C[result[0]] === void 0) {
             level15C[result[0]] = 1;
           } else {
@@ -184,8 +278,8 @@ window.draw_graph = function() {
           }
         }
         break;
-      case "16":
-        if (result[1] === "true") {
+      case 16:
+        if (result[1] === true) {
           if (level16C[result[0]] === void 0) {
             level16C[result[0]] = 1;
           } else {
@@ -199,8 +293,8 @@ window.draw_graph = function() {
           }
         }
         break;
-      case "17":
-        if (result[1] === "true") {
+      case 17:
+        if (result[1] === true) {
           if (level17C[result[0]] === void 0) {
             level17C[result[0]] = 1;
           } else {
@@ -268,6 +362,7 @@ window.draw_graph = function() {
       level17F[label] = 0;
     }
   }
+
   for (k = 0, len1 = labels.length; k < len1; k++) {
     label = labels[k];
     countLevel10C.push(level10C[label]);
@@ -287,129 +382,149 @@ window.draw_graph = function() {
     countLevel17C.push(level17C[label]);
     countLevel17F.push(level17F[label]);
   }
-  for (i = l = 0, ref1 = barNum; 0 <= ref1 ? l < ref1 : l > ref1; i = 0 <= ref1 ? ++l : --l) {
-    bgColors10C[i] = 'rgba(192, 75, 75, 1)';
-    bgColors10F[i] = 'rgba(192, 75, 75, 0.2)';
-    bgColors11C[i] = 'rgba(255, 165, 0, 1)';
-    bgColors11F[i] = 'rgba(255, 165, 0, 0.2)';
-    bgColors12C[i] = 'rgba(251, 208, 29, 1)';
-    bgColors12F[i] = 'rgba(255, 239, 32, 0.2)';
-    bgColors13C[i] = 'rgba(75, 192, 75, 1)';
-    bgColors13F[i] = 'rgba(75, 192, 75, 0.2)';
-    bgColors14C[i] = 'rgba(75, 150, 192, 1)';
-    bgColors14F[i] = 'rgba(75, 150, 192, 0.2)';
-    bgColors15C[i] = 'rgba(75, 75, 192, 1)';
-    bgColors15F[i] = 'rgba(75, 75, 192, 0.2)';
-    bgColors16C[i] = 'rgba(138, 43, 226, 1)';
-    bgColors16F[i] = 'rgba(138, 43, 226, 0.2)';
-    bgColors17C[i] = 'rgba(75, 0, 130, 1)';
-    bgColors17F[i] = 'rgba(75, 0, 130, 0.2)';
+  for (
+    i = l = 0, ref1 = barNum;
+    0 <= ref1 ? l < ref1 : l > ref1;
+    i = 0 <= ref1 ? ++l : --l
+  ) {
+    bgColors10C[i] = "rgba(192, 75, 75, 1)";
+    bgColors10F[i] = "rgba(192, 75, 75, 0.2)";
+    bgColors11C[i] = "rgba(255, 165, 0, 1)";
+    bgColors11F[i] = "rgba(255, 165, 0, 0.2)";
+    bgColors12C[i] = "rgba(251, 208, 29, 1)";
+    bgColors12F[i] = "rgba(255, 239, 32, 0.2)";
+    bgColors13C[i] = "rgba(75, 192, 75, 1)";
+    bgColors13F[i] = "rgba(75, 192, 75, 0.2)";
+    bgColors14C[i] = "rgba(75, 150, 192, 1)";
+    bgColors14F[i] = "rgba(75, 150, 192, 0.2)";
+    bgColors15C[i] = "rgba(75, 75, 192, 1)";
+    bgColors15F[i] = "rgba(75, 75, 192, 0.2)";
+    bgColors16C[i] = "rgba(138, 43, 226, 1)";
+    bgColors16F[i] = "rgba(138, 43, 226, 0.2)";
+    bgColors17C[i] = "rgba(75, 0, 130, 1)";
+    bgColors17F[i] = "rgba(75, 0, 130, 0.2)";
   }
 
   myChart = new Chart(ctx, {
-    type: 'bar',
+    type: "bar",
     data: {
       labels: labels,
       datasets: [
         {
-          label: '8-10 C',
+          label: "8-10 C",
           data: countLevel10C,
           backgroundColor: bgColors10C,
           borderColor: bgColors10C,
           borderWidth: 2
-        }, {
-          label: '8-10 F',
+        },
+        {
+          label: "8-10 F",
           data: countLevel10F,
           backgroundColor: bgColors10F,
           borderColor: bgColors10C,
           borderWidth: 2
-        }, {
-          label: '11 C',
+        },
+        {
+          label: "11 C",
           data: countLevel11C,
           backgroundColor: bgColors11C,
           borderColor: bgColors11C,
           borderWidth: 2
-        }, {
-          label: '11 F',
+        },
+        {
+          label: "11 F",
           data: countLevel11F,
           backgroundColor: bgColors11F,
           borderColor: bgColors11C,
           borderWidth: 2
-        }, {
-          label: '12 C',
+        },
+        {
+          label: "12 C",
           data: countLevel12C,
           backgroundColor: bgColors12C,
           borderColor: bgColors12C,
           borderWidth: 2
-        }, {
-          label: '12 F',
+        },
+        {
+          label: "12 F",
           data: countLevel12F,
           backgroundColor: bgColors12F,
           borderColor: bgColors12C,
           borderWidth: 2
-        }, {
-          label: '13 C',
+        },
+        {
+          label: "13 C",
           data: countLevel13C,
           backgroundColor: bgColors13C,
           borderColor: bgColors13C,
           borderWidth: 2
-        }, {
-          label: '13 F',
+        },
+        {
+          label: "13 F",
           data: countLevel13F,
           backgroundColor: bgColors13F,
           borderColor: bgColors13C,
           borderWidth: 2
-        }, {
-          label: '14 C',
+        },
+        {
+          label: "14 C",
           data: countLevel14C,
           backgroundColor: bgColors14C,
           borderColor: bgColors14C,
           borderWidth: 2
-        }, {
-          label: '14 F',
+        },
+        {
+          label: "14 F",
           data: countLevel14F,
           backgroundColor: bgColors14F,
           borderColor: bgColors14C,
           borderWidth: 2
-        }, {
-          label: '15 C',
+        },
+        {
+          label: "15 C",
           data: countLevel15C,
           backgroundColor: bgColors15C,
           borderColor: bgColors15C,
           borderWidth: 2
-        }, {
-          label: '15 F',
+        },
+        {
+          label: "15 F",
           data: countLevel15F,
           backgroundColor: bgColors15F,
           borderColor: bgColors15C,
           borderWidth: 2
-        }, {
-          label: '16 C',
+        },
+        {
+          label: "16 C",
           data: countLevel16C,
           backgroundColor: bgColors16C,
           borderColor: bgColors16C,
           borderWidth: 2
-        }, {
-          label: '16 F',
+        },
+        {
+          label: "16 F",
           data: countLevel16F,
           backgroundColor: bgColors16F,
           borderColor: bgColors16C,
           borderWidth: 2
-        }, {
-          label: '17 C',
+        },
+        {
+          label: "17 C",
           data: countLevel17C,
           backgroundColor: bgColors17C,
           borderColor: bgColors17C,
           borderWidth: 2
-        }, {
-          label: '17 F',
+        },
+        {
+          label: "17 F",
           data: countLevel17F,
           backgroundColor: bgColors17F,
           borderColor: bgColors17C,
           borderWidth: 2
-        }, {
-          label: 'Burned Calory',
-          type: 'line',
+        },
+        {
+          label: "Burned Calory",
+          type: "line",
           fill: false,
           data: burnedCalory,
           borderColor: "rgb(0, 172, 115)",
@@ -432,7 +547,8 @@ window.draw_graph = function() {
             ticks: {
               beginAtZero: true
             }
-          }, {
+          },
+          {
             id: "y-axis-calory",
             type: "linear",
             position: "right",
@@ -447,64 +563,82 @@ window.draw_graph = function() {
     }
   });
 
-  var myCanvas = document.getElementById('myChart');
+  var myCanvas = document.getElementById("myChart");
 
-  myCanvas.addEventListener('click', function(event) {
+  myCanvas.addEventListener("click", function(event) {
     let item = myChart.getElementAtEvent(event);
-  
+
     if (item.length == 0) {
-      console.log('no element found.')
+      console.log("no element found.");
       return;
     }
-  
+
     item = item[0];
     targetResult = item._chart.config.data.datasets[item._datasetIndex].label;
     dateLabel = item._chart.config.data.labels[item._index];
 
-    targetLevel = targetResult.split(' ');
+    targetLevel = targetResult.split(" ");
 
     data = [];
-    data.push(["プレイ日", "", "Lv.", "タイトル", "難易度", "スコア", "生存秒", "リザルト", "譜面確認"]);
+    data.push([
+      "プレイ日",
+      "",
+      "Lv.",
+      "タイトル",
+      "難易度",
+      "スコア",
+      "生存秒",
+      "リザルト",
+      "譜面確認"
+    ]);
 
     for (result of gon.allResults) {
       if (result[0] == dateLabel && result[2] == targetLevel[0]) {
         data.push(result);
-      } else if ((result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "8") || 
-                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "9") ||
-                 (result[0] == dateLabel && targetLevel[0] == "8-10" && result[2] == "10")) {
+      } else if (
+        (result[0] == dateLabel &&
+          targetLevel[0] == "8-10" &&
+          result[2] == "8") ||
+        (result[0] == dateLabel &&
+          targetLevel[0] == "8-10" &&
+          result[2] == "9") ||
+        (result[0] == dateLabel &&
+          targetLevel[0] == "8-10" &&
+          result[2] == "10")
+      ) {
         data.push(result);
       }
     }
     clearTable("table");
-    makeTable(data,"table");
+    makeTable(data, "table");
   });
 };
-  
-  function getToday() {
-    var today = new Date();
-    today.setDate(today.getDate());
-    var yyyy = today.getFullYear();
-    var mm = ("0"+(today.getMonth()+1)).slice(-2);
-    var dd = ("0"+today.getDate()).slice(-2);
-    document.getElementById("fromDate").max=yyyy+'-'+mm+'-'+dd;
-    document.getElementById("toDate").max=yyyy+'-'+mm+'-'+dd;
-    document.getElementById("toDate").value=yyyy+'-'+mm+'-'+dd;
-  }
-  
-  function formatDate (date, format) {
-    format = format.replace(/yyyy/g, date.getFullYear());
-    format = format.replace(/MM/g, ('' + (date.getMonth() + 1)).slice(-2));
-    format = format.replace(/dd/g, ('' + date.getDate()).slice(-2));
-    format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
-    format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
-    format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
-    format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
-    return format;
-  };
+
+function getToday() {
+  var today = new Date();
+  today.setDate(today.getDate());
+  var yyyy = today.getFullYear();
+  var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+  var dd = ("0" + today.getDate()).slice(-2);
+  document.getElementById("fromDate").max = yyyy + "-" + mm + "-" + dd;
+  document.getElementById("toDate").max = yyyy + "-" + mm + "-" + dd;
+  document.getElementById("toDate").value = yyyy + "-" + mm + "-" + dd;
+}
+
+function formatDate(date, format) {
+  format = format.replace(/yyyy/g, date.getFullYear());
+  format = format.replace(/MM/g, ("" + (date.getMonth() + 1)).slice(-2));
+  format = format.replace(/dd/g, ("" + date.getDate()).slice(-2));
+  format = format.replace(/HH/g, ("0" + date.getHours()).slice(-2));
+  format = format.replace(/mm/g, ("0" + date.getMinutes()).slice(-2));
+  format = format.replace(/ss/g, ("0" + date.getSeconds()).slice(-2));
+  format = format.replace(/SSS/g, ("00" + date.getMilliseconds()).slice(-3));
+  return format;
+}
 
 function findFromDate(dates, fromDate) {
   for (i in dates) {
-    if (dates[i] == formatDate(fromDate, 'MM月dd日')){
+    if (dates[i] == formatDate(fromDate, "MM月dd日")) {
       return i;
     }
   }
@@ -514,7 +648,7 @@ function findFromDate(dates, fromDate) {
 
 function findToDate(dates, toDate) {
   for (i in dates) {
-    if (dates[i] == formatDate(toDate, 'MM月dd日')){
+    if (dates[i] == formatDate(toDate, "MM月dd日")) {
       return i;
     }
   }
@@ -522,6 +656,6 @@ function findToDate(dates, toDate) {
   return findToDate(dates, toDate);
 }
 
-function onload_proc(){
+function onload_proc() {
   getToday();
 }
