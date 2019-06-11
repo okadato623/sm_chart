@@ -115,3 +115,31 @@ function search_song() {
   }
   makeDetailTable(data, "detailTable");
 }
+
+function show_all() {
+  var data = [];
+  data.push([
+    "プレイ日",
+    "",
+    "Lv.",
+    "タイトル",
+    "難易度",
+    "スコア",
+    "生存秒",
+    "リザルト",
+    "譜面確認"
+  ]);
+  var table = document.getElementById("detailTable");
+  $("#result_title").val("");
+  $("#result_level").val("");
+  $("#result_cleared").val("");
+
+  for (result of gon.allResults) {
+    data.push(result);
+  }
+
+  if (table.hasChildNodes()) {
+    table.removeChild(table.firstChild);
+  }
+  makeDetailTable(data, "detailTable");
+}
