@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190611012347) do
+ActiveRecord::Schema.define(version: 20190611012614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "results", force: :cascade do |t|
     t.string   "MachineGuid"
-    t.string   "cleared"
+    t.boolean  "cleared"
     t.string   "datetime"
     t.string   "Disqualified"
     t.string   "grade"
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20190611012347) do
     t.string   "Stream"
     t.string   "TapsAndHolds"
     t.string   "Voltage"
-    t.string   "score"
+    t.integer  "score"
     t.string   "StageGuid"
-    t.string   "survive_seconds"
+    t.float    "survive_seconds"
     t.string   "AvoidMine"
     t.string   "CheckpointHit"
     t.string   "CheckpointMiss"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20190611012347) do
     t.string   "W5"
     t.string   "Dir"
     t.string   "difficulty"
-    t.string   "level"
+    t.integer  "level"
     t.string   "StepsType"
     t.string   "_id"
     t.string   "_index"

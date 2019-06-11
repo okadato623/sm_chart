@@ -1,0 +1,12 @@
+<html>
+<head>
+</head>
+<body>
+  <%= form_for @songList do |f| %>
+    <%= f.select :title, @all_titles %>
+    <input type="button" value="絞り込む" onclick="search_song();">
+    <input type="button" value="すべて表示" onclick="show_all();">
+  <% end %>
+  <div id="detailTable"></div>
+  <script>onload_detail();</script>
+</body>

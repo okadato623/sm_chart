@@ -12,22 +12,12 @@ class ChartSampleController < ApplicationController
       dates << result[0]
     }
     gon.dates = dates.uniq
+    p gon.allResults
 
     @targetSong = TargetSong.all
     gon.targetSongs = @targetSong
 
     @newSong = TargetSong.new
-  end
-
-  def detail
-    gon.allResults = []
-    Result.where(title: "初音ミクの消失").pluck(:datetime, :cleared, :level, :title, :difficulty, :score, :survive_seconds, :grade).each{ |result|
-      result[0] = result[0].to_date.strftime("%-m月%-d日")
-      result[4] = convert_difficulty(result[4])
-      result[6] = convert_surviveseconds(result[6], result[7])
-      result[7] = convert_result(result[7])
-      gon.allResults << result
-    }
   end
 
   def convert_difficulty(input)
