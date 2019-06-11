@@ -79,19 +79,29 @@ function onload_detail() {
 }
 
 function search_song() {
+  var data = [];
+  data.push([
+    "プレイ日",
+    "",
+    "Lv.",
+    "タイトル",
+    "難易度",
+    "スコア",
+    "生存秒",
+    "リザルト",
+    "譜面確認"
+  ]);
+  var table = document.getElementById("detailTable");
   var search_word = $("#result_title").val();
-  $("#detailTable tbody tr").each(function() {
-    var title = $(this)
-      .find("td:eq(3)")
-      .html();
-    if (title == search_word || title == "タイトル") {
-      $(this).show();
-    } else {
-      $(this).hide();
+  for (result of gon.allResults) {
+    if (result[3] == search_word) {
+      console.log(search_word);
+      data.push(result);
     }
-  });
-}
+  }
 
-function show_all() {
-  $("#detailTable tr").show();
+  if (table.hasChildNodes()) {
+    table.removeChild(table.firstChild);
+  }
+  makeDetailTable(data, "detailTable");
 }
