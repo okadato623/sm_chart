@@ -92,12 +92,22 @@ function search_song() {
     "譜面確認"
   ]);
   var table = document.getElementById("detailTable");
-  var search_word = $("#result_title").val();
+  var search_title = $("#result_title").val();
+  var search_level = $("#result_level").val();
+  var search_cleared = $("#result_cleared").val();
+
   for (result of gon.allResults) {
-    if (result[3] == search_word) {
-      console.log(search_word);
-      data.push(result);
+    if (search_title != "" && search_title != result[3]) {
+      continue;
     }
+    if (search_level != "" && search_level != result[2]) {
+      continue;
+    }
+    if (search_cleared != "" && search_cleared != String(result[1])) {
+      continue;
+    }
+
+    data.push(result);
   }
 
   if (table.hasChildNodes()) {

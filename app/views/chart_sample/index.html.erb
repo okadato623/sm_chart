@@ -3,6 +3,7 @@
   <%= include_gon %>
 </head>
 <body>
+  <% if false %>
   <details>
     <summary>クリア目標曲</summary>
     <%# <div id="targetTable"></div> %>
@@ -48,6 +49,7 @@
     <% end %>
   </details>
   <hr>
+  <% end %>
 
   <label for="from_date">from</label>
   <input type="date" id="fromDate" value="2019-05-02" min="2019-05-02" max="today">
