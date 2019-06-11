@@ -1,16 +1,3 @@
-window.clear_graph = function() {
-  var myChart = document.getElementById("myChart");
-  myChart.remove();
-
-  var myCanvas = document.createElement("canvas");
-  myCanvas.id = "myChart";
-  myCanvas.width = "850";
-  myCanvas.height = "800";
-  var objBody = document.getElementsByTagName("body").item(0);
-  var table = document.getElementById("table");
-  objBody.insertBefore(myCanvas, table);
-};
-
 window.draw_graph = function() {
   var barNum,
     bgColors10C,
@@ -613,6 +600,19 @@ window.draw_graph = function() {
     makeTable(data, "table");
   });
 };
+
+function clear_graph() {
+  var myChart = document.getElementById("myChart");
+  myChart.remove();
+
+  var myCanvas = document.createElement("canvas");
+  myCanvas.id = "myChart";
+  myCanvas.width = "850";
+  myCanvas.height = "800";
+  var objBody = document.getElementsByTagName("body").item(0);
+  var table = document.getElementById("table");
+  objBody.insertBefore(myCanvas, table);
+}
 
 function getToday() {
   var today = new Date();
