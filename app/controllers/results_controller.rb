@@ -17,7 +17,7 @@ class ResultsController < ChartSampleController
     @songList = Result.new
 
     @results = Result.all
-    @all_titles = []
+    @all_titles = [""]
     @results.each do |result|
       @all_titles << result[:title]
     end
