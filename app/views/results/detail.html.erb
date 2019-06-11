@@ -8,7 +8,7 @@
     <%= f.select :level, [["",""],[13,13],[14,14],[15,15],[16,16],[17,17]], :selected => ["",""] %>
     <%= f.select :cleared, [["",""], ["CLEAR", "true"], ["FAIL", "false"]], :selected => ["",""] %>
     <input type="button" value="絞り込む" onclick="search_song();">
-    <input type="button" value="すべて表示" onclick="location.reload();">
+    <input type="button" value="すべて表示" onclick="show_all();">
   <% end %>
   <div id="detailTable"></div>
   <script>onload_detail();</script>
