@@ -3,6 +3,12 @@
   <%= include_gon %>
 </head>
 <body>
+  <nav>
+    <button class="btn btn-success" type="button" onClick="location.href='/'">グラフ</button>
+    <button class="btn btn-outline-success" type="button" onClick="location.href='/detail'">テーブル</button>
+  </nav>
+  <hr>
+
   <label for="from_date">From</label>
   <input type="date" id="fromDate" value="2019-05-02" min="2019-05-02" max="today">
   <label for="to_date">To</label>

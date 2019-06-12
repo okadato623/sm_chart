@@ -3,6 +3,12 @@
   <%= include_gon %>
 </head>
 <body>
+  <nav>
+    <button class="btn btn-outline-success" type="button" onClick="location.href='/'">グラフ</button>
+    <button class="btn btn-success" type="button" onClick="location.href='/detail'">テーブル</button>
+  </nav>
+  <hr>
+
   <%= form_for @songList do |f| %>
     <%= f.select :title, @all_titles %>
     <%= f.select :level, [["",""],[13,13],[14,14],[15,15],[16,16],[17,17]], :selected => ["",""] %>
