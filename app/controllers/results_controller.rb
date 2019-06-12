@@ -23,4 +23,7 @@ class ResultsController < ChartSampleController
     end
     @all_titles.uniq!.compact!.sort!
   end
+
+  def create
+  end
 end

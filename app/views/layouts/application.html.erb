@@ -9,25 +9,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="margin:20px">
     <nav>
-      <ul>
-      <li><a href="/">グラフ表示</a></li>
-      <li><a href="/detail">テーブル表示</a></li>
-      </ul>
+      <button class="btn btn-outline-success" type="button" onClick="location.href='/'">グラフ</button>
+      <button class="btn btn-outline-success" type="button" onClick="location.href='/detail'">テーブル</button>
     </nav>
     <hr>
 
     <%= yield %>
   </body>
 </html>
-
-<style>
-nav{
-    padding: 3px;	
-}
-
-nav ul li{ 	
-    display: inline;
-}
-</style>
