@@ -3,88 +3,15 @@
   <%= include_gon %>
 </head>
 <body>
-  <% if false %>
-  <details>
-    <summary>クリア目標曲</summary>
-    <%# <div id="targetTable"></div> %>
-    <div id="songs">
-    <table>
-    <thead bgcolor="#aaa">
-      <tr>
-        <th class="sort" data-sort="title">タイトル</th>
-        <th class="sort" data-sort="difficulty">難易度</th>
-        <th class="sort" data-sort="level">Lv.</th>
-        <th>譜面確認</th>
-        <th>削除</th>
-      </tr>
-    </thead>
-    <!-- IMPORTANT, class="list" have to be at tbody -->
-    <tbody class="list">
-    <% @targetSong.each do |song| %>
-    <tr>
-      <td class="title" width="400px">
-        <%= song.title %>
-      </td>
-      <td class="difficulty" align="center">
-        <%= song.difficulty %>
-      </td>
-      <td class="level" align="center">
-        <%= song.level %>
-      </td>
-      <td align="center">
-        <%= link_to 'Youtube', "https://www.youtube.com/results?search_query=#{song.title} #{song.difficulty} SINGLE 譜面確認", target: :_blank %>
-      </td>
-      <td align="center">
-        <%= link_to '■', song, method: :delete %>
-      </td>
-    </tr>
-    <% end %>
-    </table>
-
-    <%= form_for @newSong do |f| %>
-      <%= f.text_field :title, :size => "45" %>
-      <%= f.select :difficulty, [["DIFFICULT","DIFFICULT"],["EXPERT","EXPERT"],["CHALLENGE","CHALLENGE"]],  :selected => ["CHALLENGE","CHALLENGE"]%>
-      <%= f.select :level, [[13,13],[14,14],[15,15],[16,16],[17,17]], :selected => [15,15] %>
-      <%= f.submit '追加', class: 'btn btn-primary' %>
-    <% end %>
-  </details>
-  <hr>
-  <% end %>
-
-  <label for="from_date">from</label>
+  <label for="from_date">From</label>
   <input type="date" id="fromDate" value="2019-05-02" min="2019-05-02" max="today">
-  <label for="to_date">to</label>
+  <label for="to_date">To</label>
   <input type="date" id="toDate" min="2019-05-02" max="today">
-  <input id="reload_button" type="button" value="期間変更" onclick="clear_graph(); draw_graph();">
-  <input id="all_period_button" type="button" value="全期間" onclick="location.reload();">
+  <button id="reload_button" class="btn btn-sm btn-outline-secondary" onclick="clear_graph(); draw_graph();">期間変更</button>
+  <button id="all_period_button" class="btn btn-sm btn-outline-secondary" onclick="location.reload()">全期間</button>
 
   <canvas id="myChart" width="850" height="800"></canvas>
   <div id="table"></div>
   <script>onload_proc();</script>
   <script>draw_graph();</script>
 </body>
-
-<script>
-var options = {
-  valueNames: [ 'title', 'difficulty', 'level' ]
-};
-var songList = new List('songs', options);
-</script>
-
-<style>
-table td {
-	background: #ddd;
-}
-table tr:nth-child(odd) td {
-	background: #eee;
-}
-th {
-font-weight: normal;
-}
-.sort.desc:after {
-  content:"▼";
-}
-.sort.asc:after {
-  content:"▲";
-}
-</style>

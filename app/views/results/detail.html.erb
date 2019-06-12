@@ -7,9 +7,10 @@
     <%= f.select :title, @all_titles %>
     <%= f.select :level, [["",""],[13,13],[14,14],[15,15],[16,16],[17,17]], :selected => ["",""] %>
     <%= f.select :cleared, [["",""], ["CLEAR", "true"], ["FAIL", "false"]], :selected => ["",""] %>
-    <input type="button" value="絞り込む" onclick="search_song();">
-    <input type="button" value="すべて表示" onclick="show_all();">
+    <button class="btn btn-sm btn-outline-secondary" onclick="search_song();">絞り込む</button>
+    <button class="btn btn-sm btn-outline-secondary" onclick="show_all();">すべて表示</button>
   <% end %>
+  
   <div id="detailTable"></div>
   <script>onload_detail();</script>
 </body>
