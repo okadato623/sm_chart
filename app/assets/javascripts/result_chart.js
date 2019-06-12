@@ -95,7 +95,8 @@ window.draw_graph = function() {
     1199.247437,
     1036.105713,
     1089.856079,
-    1107.594116
+    1107.594116,
+    997.466125
   );
 
   ctx = document.getElementById("myChart").getContext("2d");
