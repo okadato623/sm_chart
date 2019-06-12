@@ -44,7 +44,7 @@ function makeTable(data, tableId) {
       }
       // 幅の設定
       if (j == 3) {
-        cell.style.width = "320px";
+        cell.style.width = "370px";
       } else if (j == 4) {
         cell.style.width = "110px";
       } else if (j == 5) {
