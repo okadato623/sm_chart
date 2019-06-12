@@ -53,6 +53,7 @@ function makeDetailTable(data, tableId) {
       }
     }
   }
+
   // 指定したdiv要素に表を加える
   document.getElementById(tableId).appendChild(table);
 }
